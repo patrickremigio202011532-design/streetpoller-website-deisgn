@@ -1,0 +1,522 @@
+:root {
+    --bg-dark: #0a0a0c;
+    --card-bg: #131316;
+    --text-main: #ffffff;
+    --text-muted: #8e8e93;
+    --neon-green: #00ff87;
+    --neon-purple: #8a2be2;
+    --neon-blue: #00d2ff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    position: sticky;
+    top: 0;
+    background: rgba(10, 10, 12, 0.8);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+    border-bottom: 1px solid #1f1f24;
+}
+
+.logo {
+    font-weight: 800;
+    font-size: 1.3rem;
+    letter-spacing: -0.5px;
+}
+
+.nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--text-main);
+}
+
+/* Universal Button */
+.btn-cta {
+    background: var(--text-main);
+    color: var(--bg-dark);
+    border: none;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: transform 0.2s, background-color 0.3s;
+}
+
+.btn-cta:hover {
+    transform: scale(1.03);
+}
+
+.text-btn {
+    background: transparent;
+    color: var(--neon-green);
+    border: 1px solid var(--neon-green);
+}
+
+.text-btn:hover {
+    background: var(--neon-green);
+    color: var(--bg-dark);
+}
+
+/* Marquee Effect */
+.marquee-container {
+    overflow: hidden;
+    background: #111;
+    padding: 12px 0;
+    white-space: nowrap;
+    border-bottom: 1px solid #1f1f24;
+}
+
+.marquee-content {
+    display: inline-block;
+    animation: marquee 20s linear infinite;
+}
+
+.marquee-content span {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #444;
+    margin-right: 50px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+@keyframes marquee {
+    0% { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(-50%, 0, 0); }
+}
+
+/* Hero Section (Updated with Blurred Video Background Integration) */
+.hero {
+    position: relative;
+    display: flex;
+    padding: 120px 5%;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    overflow: hidden;
+    background-color: #050507;
+}
+
+/* Background Video Styling */
+.hero-bg-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%) scale(1.05); /* Scaled slightly to prevent edge bleed from blur */
+    z-index: 1;
+    object-fit: cover;
+    opacity: 0.22;
+    filter: blur(10px);
+    pointer-events: none;
+}
+
+/* Vignette / Contrast Overlay */
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom, 
+        rgba(10, 10, 12, 0.2) 0%, 
+        rgba(10, 10, 12, 0.7) 70%, 
+        var(--bg-dark) 100%
+    );
+    z-index: 2;
+}
+
+/* Content layer elevated above video */
+.hero-left, .hero-right {
+    position: relative;
+    z-index: 3;
+}
+
+.hero-left {
+    max-width: 55%;
+}
+
+.hero-left h1 {
+    font-size: 4rem;
+    line-height: 1.1;
+    font-weight: 900;
+    margin-bottom: 20px;
+}
+
+.hero-left .highlight {
+    color: #e5ff00;
+}
+
+.hero-left p {
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+/* iPhone Chassis & Screen Layout Rules */
+.hero-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.iphone-mockup {
+    position: relative;
+    width: 310px;
+    height: 630px;
+    background: #000000;
+    border-radius: 46px; /* Mimics authentic outer corner radii curves */
+    border: 4px solid #2d2d30; /* Inner titanium-shade finish band */
+    box-shadow: 
+        0 0 0 3px #18181a, /* Outer deep perimeter accent ring */
+        0 20px 50px -10px rgba(0, 0, 0, 0.8);
+    overflow: hidden;
+}
+
+/* Dynamic Island Display Component Cutout */
+.dynamic-island {
+    position: absolute;
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90px;
+    height: 26px;
+    background: #000000;
+    border-radius: 20px;
+    z-index: 25;
+}
+
+/* Matte Display Screen Container Bezel */
+.iphone-screen {
+    position: absolute;
+    inset: 6px; /* Forms an exact uniform perimeter display bezel border */
+    border-radius: 40px;
+    overflow: hidden;
+    background: #0d0d11;
+    z-index: 10;
+}
+
+.iphone-screen img, 
+.iphone-screen video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Diagonal High-Gloss Sheen Coating Layer */
+.iphone-sheen {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        120deg, 
+        rgba(255, 255, 255, 0.06) 0%, 
+        rgba(255, 255, 255, 0.02) 25%, 
+        transparent 45%
+    );
+    pointer-events: none;
+    z-index: 20;
+}
+
+/* Internal Dynamic Overlay Adjustments */
+.phone-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, transparent 60%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 35px 20px 25px 20px; /* Top padding isolates elements cleanly from the island */
+    z-index: 12;
+}
+
+.badge {
+    background: #e5ff00;
+    color: #000000;
+    padding: 6px 12px;
+    font-weight: 800;
+    font-size: 0.75rem;
+    align-self: flex-start;
+    border-radius: 5px;
+    letter-spacing: 0.3px;
+}
+
+.play-icon {
+    font-size: 3rem;
+    align-self: center;
+    color: #ffffff;
+    cursor: pointer;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    opacity: 0.95;
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.play-icon:hover {
+    transform: scale(1.1);
+}
+
+/* Proof Section */
+.proof-section {
+    padding: 80px 5%;
+    text-align: center;
+}
+
+.proof-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.sub-proof {
+    color: var(--text-muted);
+    margin-bottom: 40px;
+}
+
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.video-card {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    height: 400px;
+    cursor: pointer;
+}
+
+.video-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s;
+}
+
+.video-card:hover img {
+    transform: scale(1.05);
+}
+
+.card-title {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    font-weight: 800;
+    font-size: 1.5rem;
+    background: rgba(0,0,0,0.4);
+    padding: 4px 12px;
+    border-radius: 4px;
+}
+
+/* Services Section */
+.services-section {
+    padding: 80px 5%;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 50px;
+}
+
+.section-tag {
+    color: var(--text-muted);
+    font-weight: 600;
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.service-card {
+    background: var(--card-bg);
+    border: 1px solid #1f1f24;
+    border-radius: 24px;
+    padding: 40px;
+    transition: transform 0.3s;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+}
+
+.card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.purple-theme .card-icon { color: var(--neon-purple); }
+.green-theme .card-icon { color: var(--neon-green); }
+.blue-theme .card-icon { color: var(--neon-blue); }
+
+.service-card h3 {
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+}
+
+.service-card p {
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.service-card ul {
+    list-style: none;
+}
+
+.service-card ul li {
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #e2e2e5;
+}
+
+.service-card ul li i {
+    color: var(--neon-green);
+}
+
+/* Process Section */
+.process-section {
+    padding: 80px 5%;
+    background: #0f0f12;
+}
+
+.process-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+    margin-top: 40px;
+}
+
+.process-card {
+    background: var(--bg-dark);
+    padding: 30px;
+    border-radius: 16px;
+    border-left: 3px solid var(--neon-purple);
+}
+
+.step-num {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: rgba(255,255,255,0.1);
+    margin-bottom: 10px;
+}
+
+/* Accordion FAQ */
+.faq-section {
+    padding: 80px 5%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-section h2 {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.accordion-item {
+    background: var(--card-bg);
+    margin-bottom: 15px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #1f1f24;
+}
+
+.accordion-header {
+    padding: 20px;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    padding: 0 20px;
+    color: var(--text-muted);
+}
+
+/* Footer Styling */
+footer {
+    border-top: 1px solid #1f1f24;
+    padding: 60px 5%;
+    background: var(--bg-dark);
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.social-icons a {
+    color: var(--text-muted);
+    font-size: 1.3rem;
+    margin-right: 15px;
+    transition: color 0.2s;
+}
+
+.social-icons a:hover {
+    color: white;
+}
+
+.subscribe-form {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.subscribe-form input {
+    background: #1c1c21;
+    border: 1px solid #2c2c35;
+    padding: 12px;
+    border-radius: 6px;
+    color: white;
+    width: 250px;
+}
+
+.subscribe-form button {
+    background: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+}
